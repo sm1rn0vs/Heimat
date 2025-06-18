@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet SPb - Сеть ресторанов в Санкт-Петербурге</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #222;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e67e22;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://example.com/restaurant-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #d35400;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #222;
+        }
+        
+        .restaurants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .restaurant-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .restaurant-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .restaurant-info {
+            padding: 1.5rem;
+        }
+        
+        .restaurant-info h3 {
+            margin-bottom: 0.5rem;
+            color: #222;
+        }
+        
+        .restaurant-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .menu-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-category h3 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .menu-item {
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item h4 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+        
+        .menu-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-card h3 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Gourmet SPb</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#restaurants">Рестораны</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <h1>Сеть ресторанов Gourmet в Санкт-Петербурге</h1>
+                    <p>Уникальные гастрономические впечатления в лучших традициях</p>
+                    <a href="#restaurants" class="btn">Наши рестораны</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="restaurants">
+        <div class="container">
+            <h2 class="section-title">Наши рестораны</h2>
+            <div class="restaurants">
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url('https://example.com/rest1.jpg');"></div>
+                    <div class="restaurant-info">
+                        <h3>Gourmet на Невском</h3>
+                        <p>Невский пр., 45</p>
+                        <p>Современная европейская кухня с видом на главную улицу города</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url('https://example.com/rest2.jpg');"></div>
+                    <div class="restaurant-info">
+                        <h3>Gourmet у воды</h3>
+                        <p>наб. реки Мойки, 12</p>
+                        <p>Рыба и морепродукты в историческом центре</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url('https://example.com/rest3.jpg');"></div>
+                    <div class="restaurant-info">
+                        <h3>Gourmet Italia</h3>
+                        <p>ул. Итальянская, 7</p>
+                        <p>Аутентичная итальянская кухня от шеф-повара из Рима</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">Наше меню</h2>
+            <div class="menu-categories">
+                <div class="menu-category">
+                    <h3>Закуски</h3>
+                    <div class="menu-item">
+                        <h4>Тартар из говядины <span>890 ₽</span></h4>
+                        <p>С маринованными грибами и трюфельным соусом</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Брускетта с томатами <span>450 ₽</span></h4>
+                        <p>На домашнем хлебе с базиликом и оливковым маслом</p>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Основные блюда</h3>
+                    <div class="menu-item">
+                        <h4>Рибей на кости <span>1850 ₽</span></h4>
+                        <p>С картофельным пюре и овощами гриль</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Лосось в соусе мисо <span>1250 ₽</span></h4>
+                        <p>С пюре из цветной капусты и спаржей</p>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Десерты</h3>
+                    <div class="menu-item">
+                        <h4>Тирамису <span>550 ₽</span></h4>
+                        <p>Классический итальянский десерт</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Шоколадный фондан <span>590 ₽</span></h4>
+                        <p>С ванильным мороженым и ягодным соусом</p>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Напитки</h3>
+                    <div class="menu-item">
+                        <h4>Лимонады собственного производства <span>350 ₽</span></h4>
+                        <p>Ассорти из сезонных фруктов и ягод</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Вино бокал/бутылка <span>от 450 ₽</span></h4>
+                        <p>Подборка лучших вин из Италии, Франции и России</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Резервация столика</h3>
+                    <p>Телефон: +7 (812) 123-45-67</p>
+                    <p>Email: reserve@gourmet-spb.ru</p>
+                    <p>Часы работы: ежедневно с 10:00 до 22:00</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Для мероприятий</h3>
+                    <p>Телефон: +7 (812) 987-65-43</p>
+                    <p>Email: events@gourmet-spb.ru</p>
+                    <p>Организация банкетов, свадеб и корпоративов</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Обратная связь</h3>
+                    <p>Телефон: +7 (967) 564-30-27</p>
+                    <p>Email: mchlsmirnoff@gmail.com</p>
+                    <p>Мы ценим ваше мнение о нашей работе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">Gourmet SPb</div>
+            <p>© 2023 Сеть ресторанов Gourmet. Все права защищены.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome для иконок -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
